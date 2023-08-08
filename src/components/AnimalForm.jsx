@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function AnimalForm() {
+function AnimalForm({ addAnimal }) {
 
 
     // STATE //
@@ -20,6 +20,19 @@ function AnimalForm() {
 
     function handleSubmitAnimal(e) {
         e.preventDefault()
+
+        const OPTIONS = { 
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, species, endangered })
+         }
+
+        fetch('http://localhost:3000/animals', OPTIONS)
+        .then(res => res.json())
+        .then( newAnimal => addAnimal( newAnimal ) )
 
         resetForm()
     }

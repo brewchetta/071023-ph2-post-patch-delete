@@ -21,20 +21,37 @@ function AnimalCollection() {
 
     // CALLBACK FUNCTIONS //
 
-    /* We'll add some callback functions here */
+    function addAnimal( newAnimal ) {
+        setAnimals( [...animals, newAnimal] )
+    }
+
+    function editAnimal( editedAnimal ) {
+        const mappedArray = animals.map( animal => {
+            if (animal.id === editedAnimal.id) { return editedAnimal} 
+            else { return animal }
+        })
+        
+        setAnimals( mappedArray )
+    }
+
+    function releaseAnimal(deletedAnimal) {
+        const filteredArray = animals.filter( animal => animal.id !== deletedAnimal.id )
+
+        setAnimals( filteredArray )
+    }
 
 
     // RENDER //
 
     return (
         <>
-            <AnimalForm />
+            <AnimalForm addAnimal={addAnimal} />
 
             <h2>Our Zoo Animals</h2>
 
             <div className="animal-container">
 
-                { animals.map(animal => <AnimalCard key={animal.id} animal={animal} />) }
+                { animals.map(animal => <AnimalCard key={animal.id} animal={animal} editAnimal={editAnimal} releaseAnimal={releaseAnimal} />) }
 
             </div>
         </>

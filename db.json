@@ -13,12 +13,6 @@
       "endangered": true
     },
     {
-      "id": 3,
-      "name": "Simba",
-      "species": "Lion",
-      "endangered": false
-    },
-    {
       "name": "Bob",
       "species": "raccoon",
       "endangered": true,
@@ -37,22 +31,10 @@
       "id": 6
     },
     {
-      "name": "Peppa",
-      "species": "pig",
-      "endangered": false,
-      "id": 7
-    },
-    {
       "name": "Okja",
       "species": "superpig",
       "endangered": true,
       "id": 9
-    },
-    {
-      "name": "Jerry",
-      "species": "alien",
-      "endangered": true,
-      "id": 10
     }
   ]
 }

@@ -1,10 +1,29 @@
-function AnimalCard({ animal }) {
+function AnimalCard({ animal, editAnimal, releaseAnimal }) {
 
 
     // EVENTS //
 
     function handleChangeEndangered(event) {
-      console.log("Attempting to change endangered")
+        const OPTIONS = {
+            method: "PATCH",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify( { endangered: !animal.endangered } )
+        }
+
+        fetch( `http://localhost:3000/animals/${animal.id}`, OPTIONS )
+        .then( res => res.json() )
+        .then( editedAnimal => editAnimal(editedAnimal) )
+    }
+
+    function handleRelease() {
+        const OPTIONS = { method: "DELETE" }
+
+        fetch( `http://localhost:3000/animals/${animal.id}`, OPTIONS )
+        .then( res => res.json() )
+        .then( () => releaseAnimal( animal ) )
     }
 
 
@@ -23,7 +42,7 @@ function AnimalCard({ animal }) {
                 onChange={ handleChangeEndangered } />
             </p>
 
-            <button>Release to the Wild</button>
+            <button onClick={ handleRelease }>Release to the Wild</button>
 
         </div>
     )
